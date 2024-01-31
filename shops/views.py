@@ -10,6 +10,7 @@ from .serializers import UserRegistrationSerializer
 
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
+from django.core.mail import send_mail
 
 
 class UserRegistrationView(generics.CreateAPIView):
@@ -19,13 +20,15 @@ class UserRegistrationView(generics.CreateAPIView):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def list_shops(request):
-    name_filter = request.GET.get("name")
-    if name_filter:
-        queryset = Shop.objects.filter(name__icontains=name_filter)
-    else:
-        queryset = Shop.objects.all()
+    send_mail('Test setup', 'fjdskahfkjlsdhfj fahsdjkfhasdkj fhdsj f', 'від кого', ['nixigol272@rentaen.com'])
+    # name_filter = request.GET.get("name")
+    # if name_filter:
+    #     queryset = Shop.objects.filter(name__icontains=name_filter)
+    # else:
+    #     queryset = Shop.objects.all()
+    
+    # serializer = ShopSerializer(queryset, many=True)
 
-    serializer = ShopSerializer(queryset, many=True)
-    return Response(serializer.data)
+    return Response({}) #serializer.data)
